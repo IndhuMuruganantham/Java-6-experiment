@@ -1,0 +1,22 @@
+```
+public class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int left = 0, maxLen = 0;
+        int[] charIndex = new int[128]; // ASCII size
+
+        for (int right = 0; right < s.length(); right++) {
+            char c = s.charAt(right);
+            left = Math.max(left, charIndex[c] + 1);
+            charIndex[c] = right;
+            maxLen = Math.max(maxLen, right - left + 1);
+        }
+        return maxLen;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        System.out.println(solution.lengthOfLongestSubstring("abcabcbb"));
+        System.out.println(solution.lengthOfLongestSubstring("bbbbb"));   
+        System.out.println(solution.lengthOfLongestSubstring("pwwkew"));   
+    }
+}
